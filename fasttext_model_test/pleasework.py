@@ -39,12 +39,9 @@ if __name__ == "__main__":
         #epoch_range = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
         lr_range = [.3]
         epoch_range = [25]
-        lr_range = [.1, .2, .3, .4, .5, .6, .7, .8, .9]
-        epoch_range = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+       
 
-        epoch = 10
         for lr in lr_range:
-            print(lr)
             for epoch in epoch_range:
                 print(epoch)
                 # train_supervised uses the same arguments and defaults as the fastText cli
