@@ -26,11 +26,8 @@ def print_results(N, p, r):
 
 if __name__ == "__main__":
     text_list = []
-<<<<<<< HEAD
     ofp = os.getcwd() + '/model_statistics_truncated_3.csv'
-=======
     ofp = os.getcwd() + '/model_statistics_truncated_2.csv'
->>>>>>> 2e61322c3a135bf5cfb4dac034896842d90dc93b
 
     with open(ofp, 'w') as csvfile:
         fieldnames = ['Epoch','LR','P1','R1','P2','R2']
@@ -38,17 +35,14 @@ if __name__ == "__main__":
         writer.writerow(fieldnames)
         train_data = os.path.join(os.getcwd(), 'truncated.train')
         valid_data = os.path.join(os.getcwd(), 'truncated.valid')
-<<<<<<< HEAD
         #lr_range = [.1, .2, .3, .4, .5, .6, .7, .8, .9]
         #epoch_range = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
         lr_range = [.3]
         epoch_range = [25]
-=======
         lr_range = [.1, .2, .3, .4, .5, .6, .7, .8, .9]
         epoch_range = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 
         epoch = 10
->>>>>>> 2e61322c3a135bf5cfb4dac034896842d90dc93b
         for lr in lr_range:
             print(lr)
             for epoch in epoch_range:
@@ -57,11 +51,8 @@ if __name__ == "__main__":
                 model = train_supervised(
                     input=train_data, epoch=epoch, lr=lr, wordNgrams=2, verbose=1, minCount=1, bucket=500000
                 )
-<<<<<<< HEAD
 
                 model.save_model('truncated_model')
-=======
->>>>>>> 2e61322c3a135bf5cfb4dac034896842d90dc93b
                 #print_results(*model.test(valid_data))
                 p1 = str(round(model.test(valid_data)[1], 3))
                 r1 = str(round(model.test(valid_data)[2], 3))
