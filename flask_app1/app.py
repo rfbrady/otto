@@ -10,10 +10,18 @@ import pandas as pd
 
 app = Flask(__name__)
 excel.init_excel(app)
-model = ft.load_model('truncated_model')
+model = ft.load_model('sdg_model')
 
 def classify(sentence):
-	return model.predict(sentence, 2)
+	prediction =  model.predict(sentence, 5)
+	ret = sentence[-6:] + "<br>"
+	for i in range(5):
+		ret = ret + "<strong>{}</strong>: {} ".format(prediction[0][i].replace("__label__",''), str(round(prediction[1][i],3)))
+	ret = ret + "<br>"
+	return ret
+
+
+
 
 
 #print(*model.predict(" machinery designing machines", 1)[0])

@@ -22,7 +22,7 @@ class ML_Model:
         self.case = case
         self.split = split
         self.table = table
-        self.path = str(os.getcwd() + "/data/" + table)
+        self.path = str(os.getcwd() + "/" + table)
         self.df = None
 
     def __str__(self):
@@ -129,6 +129,8 @@ if __name__ == "__main__":
 
             clf = MultinomialNB().fit(X_train_tfidf, y_train)
             print(clf.predict(count_vect.transform(["sadly those qualities are not hallmarks of this guy queen cheese water infrastructure housing crisis poor people etc"])))
+            print(clf.predict(count_vect.transform([" water quality pollution"])))
+
             model_to_use = LinearSVC()
             model_name = model_to_use.__class__.__name__
             CV = 5
@@ -139,7 +141,9 @@ if __name__ == "__main__":
             cv_df = pd.DataFrame(entries, columns=['model_name', 'fold_idx', 'accuracy'])
             X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, model.df.index, test_size=0.33, random_state=0)
             model_to_use.fit(X_train, y_train)
+            y_pred = model_to_use.predict_proba(X_test)
             y_pred = model_to_use.predict(X_test)
+            model_to_use.predict(["water quality pollution"].reshape(1, -1))
             from sklearn.metrics import confusion_matrix
             conf_mat = confusion_matrix(y_test, y_pred)
             #print average accuracy for each sklearn model

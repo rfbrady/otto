@@ -9,14 +9,14 @@ from nltk.stem import LancasterStemmer, WordNetLemmatizer
 
 if __name__ == '__main__':
 
-	datafile = 'data/sdg_master_unique_cleaned.xlsx'
+	datafile = 'truncated_codes.xlsx'
 	df = pd.read_excel(datafile)
 	stop_words = set()
 	stop_words = stopwords.words('english')
 	remove_nonalpha = True
 
-	sqlite_file = 'data/testdb.sqlite'
-	table_name = 'sdg'
+	sqlite_file = '../data/testdb.sqlite'
+	table_name = 'sdg_truncated'
 	primary_key = 'rowid'
 	columns = ['title', 'short', 'long', 'sdg_code']
 

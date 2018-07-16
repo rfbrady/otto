@@ -16,7 +16,7 @@ def print_results(N, p, r):
 def parse_args():
 	parser = argparse.ArgumentParser(description='Pull data from sqlite DB and train a FastText model on it')
 	parser.add_argument('-d', '--database', help='Specify sqlite DB', required=False, default='testdb.sqlite')
-	parser.add_argument('-s', '--split', help='Choose test/train split', required=False, default=.2, type=float)
+	parser.add_argument('-s', '--split', help='Choose test/train split, default is .2', required=False, default=.2, type=float)
 	args = parser.parse_args()
 	return args
 
@@ -36,7 +36,7 @@ def token_filter(sentence, stop_words, remove_nonalphanum):
 
 def print_prediction(prediction):
 	for i in range(5):
-		print("{} with probability {}".format(prediction[0][i], str(round(prediction[1][i], 3))))
+		print("{} with probability {}".format(prediction[0][i].replace('__label__',''), str(round(prediction[1][i], 3))))
 
 if __name__ == '__main__':
 	args = parse_args()
@@ -109,13 +109,13 @@ if __name__ == '__main__':
 	train_data = os.getcwd() + '/sdg.train'
 	test_data = os.getcwd() + '/sdg.test'
 
-	epoch_list = [100]
+	epoch_list = [500]
 	lr_list = [.4]
 
 	for epoch in epoch_list:
 		for lr in lr_list:
 			model = train_supervised(
-				input=train_data, epoch=epoch, lr=lr, loss='ns' ,wordNgrams=2, verbose=1, minCount=1, bucket=500000
+				input=train_data, epoch=epoch, lr=lr, wordNgrams=2, verbose=2, minCount=1, bucket=500000
 			)
 			print("epoch: {} lr: {}".format(epoch, lr))
 			print_results(*model.test(test_data))
@@ -133,17 +133,8 @@ if __name__ == '__main__':
 			print("{}{}".format(p2, r2))
 			print("{}{}".format(p3, r3))
 
-			sentence = "migrant smuggling migrant smuggling supports trafficking victims protection"
-			prediction = model.predict(sentence, 5)
-			print_prediction(prediction)
-			print("success")
-			#print(model.predict(sentence, 5)[0][1])
-			#print(*model.predict(sentence, 5)[1])
-			#print(model.predict(sentence, 5)[1][1])
-			#print(*model.predict(sentence, 5))
-			#print(*model.predict('civilian peace building', 5))
-			#model.save_model('sdg_model')
-
+			model.save_model('sdg_model')
+			model.save_model('../flask_app1/sdg_model')
 
 
 
