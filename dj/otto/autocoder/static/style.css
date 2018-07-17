@@ -1,0 +1,13 @@
+.testclass{
+	background-color: blue;
+}
+
+.vertnav{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.vertnav li{
+	width: 135px;
+}
