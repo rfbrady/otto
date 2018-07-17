@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, abort, make_response
 import json
 from wtforms import Form, TextAreaField, validators
 import sqlite3
@@ -13,16 +13,43 @@ excel.init_excel(app)
 model = ft.load_model('sdg_model')
 
 def classify(sentence):
-	prediction =  model.predict(sentence, 5)
+	prediction =  model.predict(sentence, 2)
 	ret = sentence[-6:] + "<br>"
-	for i in range(5):
+	for i in range(2):
 		ret = ret + "<strong>{}</strong>: {} ".format(prediction[0][i].replace("__label__",''), str(round(prediction[1][i],3)))
 	ret = ret + "<br>"
 	return ret
 
 
+tasks = [
+	{
+		'id': 1,
+		'title': u'buy groceries',
+		'description': u'milk, cheese, pizza',
+		'done': False
+	},
+	{
+		'id': 2,
+		'title': u'go to the car shop',
+		'description': u'buy a freakin car',
+		'done': True
+	}	
+]
 
+@app.errorhandler(404)
+def not_found(error):
+	return make_response(jsonify({'error': 'not found'}), 404)
 
+@app.route('/tasks', methods=['GET'])
+def get_tasks():
+	return jsonify({'tasks': tasks})
+
+@app.route('/tasks/<int:task_id>', methods=['GET'])
+def get_task(task_id):
+	task = [task for task in tasks if task['id'] == task_id]
+	if len(task) == 0:
+		abort(404)
+	return jsonify({'task': task[0]})
 
 #print(*model.predict(" machinery designing machines", 1)[0])
 class SDGForm(Form):
