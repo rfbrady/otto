@@ -15,57 +15,19 @@ body{
 	align-items: center;
 }
 
-@media (min-width: 480px){
-	.triangle-wrap{
-		opacity: 0.8;
-		width: 96px;
-		height: 45px;
-		margin-top: 1.75px;
-		padding-top: 0px;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-
-	.triangle1, .triangle2, .triangle3, .triangle4, .triangle5, .triangle6{
-		position: absolute;
-		bottom: 0;
-		width: 0;
-		height: 0;
-	}
-
-	.triangle1{
-		border-left: 29px solid transparent;
-		border-right: 29.4px solid transparent;
-		border-bottom: 45px solid #00b18f;
-		left: 0;
-	}
-
-}
-
-div{
-	display: block;
-}
-
 .header-container{
 	display: flex;
-	height: 200px;
+	width: 600px;
 	align-items: center;
-	align-content: flex-start;
 }
 
-.logo-wrap{
+.header-nav{
 	display: flex;
 	flex-direction: row;
-
-	justify-content: flex-start;
+	justify-content: space-around;
+	list-style: none;
 	align-items: center;
 	margin: 0;
-}
-
-.header-nav img{
-	width: 60%;
-	height: 60%;
 }
 
 .header-nav li{
