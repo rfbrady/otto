@@ -39,9 +39,12 @@ body{
 		border-right: 29.4px solid transparent;
 		border-bottom: 45px solid #00b18f;
 		left: 0;
+		opacity: 1;
 	}
 
 }
+
+
 
 div{
 	display: block;
