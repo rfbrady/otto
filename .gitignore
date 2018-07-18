@@ -5,3 +5,4 @@ scripts/sdg_model
 scripts/truncated_sdg_model
 flask_app1/truncated_sdg_model
 flask_app1/sdg_model
+dj/venv
