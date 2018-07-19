@@ -15,10 +15,10 @@ if __name__ == '__main__':
 	stop_words = stopwords.words('english')
 	remove_nonalpha = True
 
-	sqlite_file = '../data/testdb.sqlite'
+	sqlite_file = '../data/testdb2.sqlite'
 	table_name = 'sdg_truncated'
 	primary_key = 'rowid'
-	columns = ['title', 'short', 'long', 'sdg_code']
+	columns = ['title', 'short_description', 'long_description', 'sdg_code']
 
 	conn = sqlite3.connect(sqlite_file)
 	c = conn.cursor()

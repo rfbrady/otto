@@ -191,6 +191,28 @@ a{
 	color: black;
 }
 
+.sdg-img-container{
+	padding: 20px;
+	margin: 0;
+	width: 700px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+
+}
+
+.sdg-img{
+	height: 100px;
+	width: 100px;
+	padding: 5px;
+	display: none;
+}
+
+.sdg-img > img{
+	width: 100%;
+	height: auto;
+}
+
 .circle{
 	display: flex;
 	width: 400px;

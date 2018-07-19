@@ -1,0 +1,13 @@
+<p>viewing database, lol</p>
+<ul class="database-entries">
+
+{% block body %}
+{% for record in records %}
+	<li><h2>{{ record.rowid }}</h2>{{ record.title }}</li>
+{% else %}
+	<li><em>Unbelievable. There was an error</em></li>
+{% endfor %}
+
+</ul>
+
+{% endblock %}
