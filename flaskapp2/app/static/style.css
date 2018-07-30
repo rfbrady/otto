@@ -168,6 +168,7 @@ div{
 	height: 60%;
 }
 
+
 .header-nav li{
 	width: 135px;
 }
@@ -222,4 +223,32 @@ a{
 	background: #c9d1dd;
 	align-items: center;
 	justify-content: space-around;
+}
+
+.view-database-body{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+
+}
+
+.database-entries{
+	width: 100%;
+	font-family: sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+.record-item{
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.record-item:nth-child(even){
+	background-color: grey;
+
+}
+
+.item-value{
+	border: 1px solid black;
 }

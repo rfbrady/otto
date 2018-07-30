@@ -1,13 +1,23 @@
+<link type="text/css" rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+
 <p>viewing database, lol</p>
-<ul class="database-entries">
+<div class="view-database-body">
+	<div class="database-entries">
 
-{% block body %}
-{% for record in records %}
-	<li><h2>{{ record.rowid }}</h2>{{ record.title }}</li>
-{% else %}
-	<li><em>Unbelievable. There was an error</em></li>
-{% endfor %}
+	{% block body %}
+	{% for record in records %}
+	<div class="record-item">
+		<div class='item-value'>{{ record.rowid }}</div>
+		<div class='item-value'>{{ record.title }}</div>
+		<div class='item-value'>{{ record.short_description }}</div>
+		<div class='item-value'>{{ record.long_description }}</div>
+		<div class='item-value'>{{ record.sdg_code }}</div>
+	</div>
+	{% else %}
+		<li><em>Unbelievable. There was an error</em></li>
+	{% endfor %}
 
-</ul>
-
+	</div>
+</div>
 {% endblock %}
