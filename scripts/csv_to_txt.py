@@ -1,12 +1,13 @@
 import csv
 import os
+import codecs
 
-ifp = os.getcwd() + '/truncated_valid.csv'
-ofp = os.getcwd() + '/truncated_valid.txt'
+ifp = os.getcwd() + '/Cambodia_2000_2013_uncoded.csv'
+ofp = os.getcwd() + '/Cambodia_2000_2013_uncoded.txt'
 text_list = []
 
 
-with open(ifp, 'r') as csv_file:
+with codecs.open(ifp, 'r', encoding='latin-1') as csv_file:
 	for line in csv_file.readlines():
 
 		text_list.append(line)

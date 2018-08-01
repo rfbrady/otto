@@ -133,8 +133,8 @@ if __name__ == '__main__':
 			print("{}{}".format(p2, r2))
 			print("{}{}".format(p3, r3))
 
-			model.save_model('sdg_model')
-			model.save_model('../flask_app1/sdg_model')
+			model.save_model('sdg_unique_cleaned_model')
+			#model.save_model('../flask_app1/sdg_model')
 
 
 

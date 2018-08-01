@@ -24,7 +24,7 @@ def parse_args():
     """Parse arguments"""
     parser = argparse.ArgumentParser(description='first classifier for SDG dataset')
     parser.add_argument('-t','--table', help="specify data table", required=True)
-    parser.add_argument('-r','--random', help="test/train data is split randomly", action='store_true', required="False")
+    parser.add_argument('-r','--random', help="test/train data is split randomly", action='store_true', required=False)
     parser.add_argument('-s', '--split', type=float, help="choose train/test data split ratio", required=False)
     parser.add_argument('-d', '--debug', action='store_true', help="eliminate training for faster debugging", required=False)
     args = parser.parse_args()
@@ -34,9 +34,10 @@ def parse_args():
 def check_args():
     """Accept or reject arguments"""
     path = os.getcwd()
-    path = path+"\\data\\" + args.table
+    path = path + "/" +args.table
+    print(path)
     try:
-        df = pd.read_excel(path)
+        df = pd.read_csv(path)
     except FileNotFoundError:
         print("Could not find spreadsheet at %s" % args.table)
         quit()
@@ -52,7 +53,7 @@ if __name__ == "__main__":
     df_copy = df.copy()
 
     #remove unneccesary characters from dataframe
-    preprocess_table.preprocess(df)
+    preprocess_table.preprocess(df,'linearSVC')
 
     if args.debug == True:
         print(df.columns.values)
@@ -118,14 +119,12 @@ if __name__ == "__main__":
         clf = MultinomialNB().fit(X_train_tfidf, y_train)
         #feed it a string for classification
         #TODO: same functionality but for an excel spreadsheet
-        print(clf.predict(count_vect.transform(["sadly those qualities are not hallmarks of this guy queen cheese water infrastructure"])))
+        print(clf.predict(count_vect.transform(["poverty", "hunger", "good health", "education", "gender equality", "clean water sanitation", "affordable clean energy", "economic growth", "industry infrastructure", "inequalities", "sustainable cities communities", "responsible consumption production", "climate", "life water", "life land", "justice institutions", "goal partnerships"])))
 
         #list of models to plot performance of
         models = [
-            RandomForestClassifier(n_estimators=200, max_depth=3, random_state=0),
-            LinearSVC(),
-            MultinomialNB(),
-            LogisticRegression(random_state=0),
+    
+            LinearSVC(max_iter=2000)
         ]
 
         CV = 5
