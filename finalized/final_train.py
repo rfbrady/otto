@@ -24,6 +24,12 @@ def read_table(table):
 		quit()
 	return table_df
 
+def preprocess_table(df, algorithm):
+	stop_words = set()
+	stop_words = stop_words.words('english')
+	if algorithm == "linearSVM":
+
+
 
 if __name__ == '__main__':
 	warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -31,12 +37,21 @@ if __name__ == '__main__':
 	if args.fasttext == False and args.linearSVM == False:
 		print("Incorrect usage: you must specify a ML algorithm")
 		quit()
-
 	cur_dir = os.getcwd()
 	table_loc = cur_dir + '/' + args.data
 	df = read_table(table_loc)
+
+	print(df)
+
+	#for fasttext this is a txt file, for linearSVM this is a df
+	if args.fasttext == True:
+		final_data = preprocess_table(df, 'fasttext')
+	elif args.linearSVM == True:
+		final_data = preprocess_table(df, 'linearSVM')
 	
 	
+
+
 
 
 
