@@ -1,8 +1,1 @@
-flask_app1/truncated_model
-flask_app1/truncated_model_29.bin
-flask_app1/model_cleaned.bin
-scripts/sdg_model
-scripts/truncated_sdg_model
-flask_app1/truncated_sdg_model
-flask_app1/sdg_model
-dj/venv
+model.trained.bin
