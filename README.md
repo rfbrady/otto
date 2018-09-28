@@ -1,2 +1,0 @@
-# otto
-sdg autocoder
